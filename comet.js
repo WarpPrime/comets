@@ -8,6 +8,7 @@ function init() {
 const G = 6.67430e-11;
 var timestep = 100;
 var tick = 0;
+cometList = [];
 
 /* seed algorithm:
 Generate a random 7-digit number
@@ -35,7 +36,7 @@ function generateComet(seed) {
         // peri
     }
 
-    console.log(comet);
+    cometList.push(comet);
   
 }
 
@@ -89,10 +90,16 @@ function arctan2(Ey, Ex)
    return u;
 }
 
-
+function EAnomaly(e,M) { // calculuate eccentric anomaly
+	var E = M; // e is eccentricity and M is mean anomaly
+	for (let i; i=0; i<25, i++) {
+		E = E + (M + e*Math.sin(E) - E)*(1+e*Math.cos(E))/(1-e*e*Math.pow(Math.cos(E),2)); // iterative keplers equation
+	}
+	return E;
+}
 
 function plot(comet) {
-    // a = comet[3]/(1-comet[2])
-    // x = a * (Math.cos(tau) - comet[2]);
-    // y = a * Math.sqrt(1-comet[2]*comet[2]) * Math.sin(tau);
+    var a = comet[3]/(1-comet[2]);
+    var x = a * (Math.cos(EAnomaly(comet[2],-0.5)) - comet[2]);
+    var y = a * Math.sqrt(1-comet[2]*comet[2]) * Math.sin(EAnomaly(comet[2],-0.5));
 }
