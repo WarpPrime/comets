@@ -2,8 +2,17 @@
     <head>
         <script src="comet.js"></script>
     </head>
-    <body>
-        <canvas id="system-xy" width="750" height="750">
+    <body onload="init()" style="background-color: #000;">
+        <canvas id="system-xy" width="1080" height="1080" style="outline: 1px solid #fff; background-color: #000">
+            Your browser is BAD.
+        </canvas>
+        <br>
+        <canvas id="system-xz" width="1080" height="360" style="outline: 1px solid #fff; background-color: #000">
+            Your browser is BAD.
+        </canvas>
+        <br>
+        <canvas id="system-yz" width="360" height="1080" style="transform: translate(1080px, -1440px); outline: 1px solid #fff; background-color: #000">
+            Your browser is BAD.
         </canvas>
     </body>
 
